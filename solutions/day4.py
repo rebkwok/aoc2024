@@ -1,5 +1,5 @@
 from collections import Counter
-from utils import read_file_as_lines
+from utils import read_file_as_grid
 
 
 def get_matching_indices(grid, current_point, previous_point, target, diagonal_only=False):
@@ -70,8 +70,7 @@ def find_diagonal_mas(grid, row_ix, col_ix):
 
 
 def part1(input_path):
-    data = read_file_as_lines(input_path)
-    grid = [[ch for ch in line] for line in data]
+    grid = read_file_as_grid(input_path)
 
     rows = len(grid)
     cols = len(grid[0])
@@ -82,8 +81,7 @@ def part1(input_path):
     print(count)
 
 def part2(input_path):
-    data = read_file_as_lines(input_path)
-    grid = [[ch for ch in line] for line in data]
+    grid = read_file_as_grid(input_path)
 
     rows = len(grid)
     cols = len(grid[0])

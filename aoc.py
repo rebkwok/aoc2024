@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from pathlib import Path
 
-from solutions import day1, day2, day3, day4, day5
+from solutions import day1, day2, day3, day4, day5, day6
 
 methods = {
     1: day1,
@@ -9,7 +9,7 @@ methods = {
     3: day3,
     4: day4,
     5: day5,
-    6: None,
+    6: day6,
     7: None,
     8: None,
     9: None,
@@ -23,13 +23,33 @@ methods = {
 
 
 def main(day, part, input_path):
+    if part == 0:
+        print(f"Setting up files for day {day}")
+        test_input = input_path / f"day{day}_test.txt"
+        real_input = input_path / f"day{day}_input.txt"
+        solution_path  = input_path.parent / "solutions" / f"day{day}.py"
+
+        for in_path in [test_input, real_input]:
+            if in_path.exists():
+                print(f"{in_path} already exists, skipping") 
+            else:
+                in_path.write_text("")
+                print(f"{in_path} created")
+
+        if solution_path.exists():
+            print(f"{solution_path} already exists, skipping") 
+        else:
+            template_path = solution_path.parent / "day_template.py"
+            solution_path.write_text(template_path.read_text())
+            print(f"{solution_path} created from template; update aoc.py imports")
+        return
     getattr(methods[day], f"part{part}")(input_path)
 
 
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("day", type=int)
-    parser.add_argument("part", type=int, choices=[1, 2])
-    parser.add_argument("input_file", type=Path)
+    parser.add_argument("part", type=int, choices=[0, 1, 2])
+    parser.add_argument("-i", "--input-file", type=Path, default=Path(__file__).parent / "input")
     args = parser.parse_args()
     main(args.day, args.part, args.input_file)
