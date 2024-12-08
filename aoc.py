@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from pathlib import Path
 
-from solutions import day1, day2, day3, day4, day5, day6, day7
+from solutions import day1, day2, day3, day4, day5, day6, day7, day8
 
 methods = {
     1: day1,
@@ -11,7 +11,7 @@ methods = {
     5: day5,
     6: day6,
     7: day7,
-    8: None,
+    8: day8,
     9: None,
     10: None,
     11: None,
