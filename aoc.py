@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from pathlib import Path
 
-from solutions import day1, day2, day3, day4, day5, day6, day7, day8
+from solutions import day1, day2, day3, day4, day5, day6, day7, day8, day9
 
 methods = {
     1: day1,
@@ -12,7 +12,7 @@ methods = {
     6: day6,
     7: day7,
     8: day8,
-    9: None,
+    9: day9,
     10: None,
     11: None,
     12: None,
@@ -43,6 +43,8 @@ def main(day, part, input_path):
             solution_path.write_text(template_path.read_text())
             print(f"{solution_path} created from template; update aoc.py imports")
         return
+    if methods.get(day) is None:
+        print("Method not found, did you update aoc.py?")
     getattr(methods[day], f"part{part}")(input_path)
 
 
