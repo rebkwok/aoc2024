@@ -43,15 +43,6 @@ def part1(input_path):
     print(len(new_stones))
 
 
-seen = {}
-
-def add_to_seen(stone, blinks, count):
-    if (stone, blinks + 1) not in seen:
-        seen[(stone, blinks)] = count
-    else:
-        seen[(stone, blinks)] = seen[(stone, blinks + 1)] + count
-
-
 @lru_cache(maxsize=None)
 def blink_stone(stone, blinks):
     if blinks == 0:
@@ -67,9 +58,6 @@ def blink_stone(stone, blinks):
         return blink_stone(int(num_str[0:half]), blinks - 1) + blink_stone(int(num_str[half:]), blinks - 1)
     
     return blink_stone(stone * 2024, blinks - 1)
-
-
-found = {}
 
 
 def part2(input_path):
@@ -97,4 +85,5 @@ def part2(input_path):
     # print(sum(stone_counter.values()))
 
     print(sum(blink_stone(stone, 75) for stone in stones))
+
 
