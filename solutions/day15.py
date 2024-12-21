@@ -204,8 +204,6 @@ def move2(robot_map, robot_position, direction):
 
     else:
         move_allowed, new_robot_position, blocks_to_move = can_move(robot_map, robot_position, direction)
-        if blocks_to_move == {(6, 6), (5, 7), (5, 6), (6, 5)}:
-            import ipdb; ipdb.set_trace()
         map_copy = deepcopy(robot_map)
         if move_allowed:
             if direction == "^":
